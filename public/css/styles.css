@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+    background-image: url('/../public/images/login.jpeg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .container {
+    text-align: center;
+  }
+
+  .alert-btn{
+    margin: 20px 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    background-color: lightcoral;
+    font-weight: bold;
+  }
+  
+  .signup-btn,
+  .login-btn,
+  .dashboard-btn,
+  .add-expense-btn,
+  .summary-btn {
+    margin: 20px 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #427D9D;
+    background-color: #DDF2FD;
+    font-weight: bold;
+  }
+  
+  .login-link,
+  .signup-link {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #DDF2FD;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .budget-summary {
+    margin-top: 20px;
+  }
+  
+  .summary-item {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #DDF2FD;
+  }
+  
+  .details-container {
+    display: none;
+    margin-top: 10px;
+  }
+  
+  .dashboard-btn {
+    background-color: #008CBA;
+  }
+  
+  .expense-details {
+    margin-top: 20px;
+  }
+  
+  .add-expense-btn {
+    background-color: #008CBA;
+  }
+
+  .label-form{
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+  }
+
+  .input-form{
+    padding: 5px 20px;
+    border-radius: 15px;
+    margin: 5px;
+    background-color: #DDF2FD;
+    border: 1px solid #DDF2FD;
+  }
+
+  .box-around{
+    background-color: #164863;
+    padding: 20px 50px;
+    border-radius: 20px;
+  }
+
+  .transactions-details ul li{
+    list-style: none;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #2D9596;
+  }
+
+  .home-img{
+    position: absolute;
+    opacity: 0.5;
+    z-index: -1;
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .color-white{
+    color: white;
+  }

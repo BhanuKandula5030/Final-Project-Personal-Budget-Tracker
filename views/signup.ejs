@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <img src="/images/login.png" alt="login" class="home-img" />
+    <div class="container box-around">
+      <h1 class="color-white">User Sign Up</h1>
+      <form action="/signup" method="post">
+        <label for="firstName" class="label-form">First Name:</label>
+        <input
+          type="text"
+          id="firstName"
+          name="firstName"
+          required
+          class="input-form"
+        />
+        <br />
+        <label for="lastName" class="label-form">Last Name:</label>
+        <input
+          type="text"
+          id="lastName"
+          name="lastName"
+          required
+          class="input-form"
+        />
+        <br />
+        <label for="username" class="label-form">Username:</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          required
+          class="input-form"
+        />
+        <br />
+        <label for="password" class="label-form">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          class="input-form"
+        />
+        <br />
+        <button type="submit" class="signup-btn">Sign Up</button>
+      </form>
+      <p class="color-white">
+        Already a member? <a class="login-link" href="/login">Login</a>
+      </p>
+    </div>
+  </body>
+</html>

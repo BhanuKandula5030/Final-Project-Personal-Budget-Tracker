@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracking</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <img src="/images/login.png" alt="login" class="home-img" />
+    <div class="container box-around">
+      <h1>Expense Tracking</h1>
+
+      <form action="/add-expense" method="post">
+        <label for="date" class="label-form">Date:</label>
+        <input type="date" id="date" name="date" required class="input-form" />
+        <br />
+        <label for="category" class="label-form">Category:</label>
+        <select id="category" name="category" required class="input-form">
+          <option value="income">Income</option>
+          <option value="savings">Savings</option>
+          <option value="expenses">Expenses</option>
+        </select>
+        <br />
+        <label for="amount" class="label-form">Amount:</label>
+        <input
+          type="number"
+          id="amount"
+          name="amount"
+          required
+          class="input-form"
+        />
+        <br />
+        <label for="description" class="label-form">Description:</label>
+        <textarea
+          id="description"
+          name="description"
+          rows="4"
+          required
+          class="input-form"
+        ></textarea>
+        <br />
+        <button type="submit" class="signup-btn">Add Amount</button>
+      </form>
+      <a href="/dashboard">
+        <button type="button" class="signup-btn">Back to Dashboard</button>
+      </a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spending Alert</title>
+  <link rel="stylesheet" href="/css/styles.css"> 
+</head>
+<body>
+  <img src="/images/login.png" alt="login" class="home-img" />
+  <div class="container box-around">
+    <h1>Spending Alert</h1>
+    <form id="spendingAlertForm" action="/process-spending-alert" method="post">
+        <label for="expenseLimit" class="label-form">Expense Limit:</label>
+        <input class="input-form" type="number" id="expenseLimit" name="expenseLimit" value="<%= expenseLimit %>" required <% if (expenseLimit !== null) { %> disabled <% } %>>
+        <br>
+        <button class="summary-btn" type="button" id="setExpenseLimitBtn" <% if (expenseLimit !== null) { %> disabled <% } %>>Set Expense Limit</button>
+        <br>
+        <p class="label-form">What would you like to do?</p>
+        <button class="summary-btn" type="submit" name="action" value="acknowledge">Acknowledge</button>
+        <button class="summary-btn" type="button" id="adjustLimitBtn">Adjust Limit</button>
+    </form>
+    <a href="/dashboard">
+      <button type="button" class="summary-btn">Back to Dashboard</button>
+    </a>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('spendingAlertForm');
+        const expenseLimitInput = document.getElementById('expenseLimit');
+        const setExpenseLimitBtn = document.getElementById('setExpenseLimitBtn');
+        const adjustLimitBtn = document.getElementById('adjustLimitBtn');
+        if (expenseLimitInput.value !== '') {
+          expenseLimitInput.disabled = true;
+          setExpenseLimitBtn.disabled = true;
+        }
+        setExpenseLimitBtn.addEventListener('click', function () {
+          fetch('/process-spending-alert', {
+            method: 'POST',
+            body: new FormData(form),
+          })
+          .then(response => {
+            console.log('Form submitted successfully');
+          })
+          .catch(error => {
+            console.error('Error submitting form', error);
+          });
+          expenseLimitInput.disabled = true;
+          setExpenseLimitBtn.disabled = true;
+        });
+        adjustLimitBtn.addEventListener('click', function () {
+          expenseLimitInput.disabled = false;
+          setExpenseLimitBtn.disabled = false;
+        });
+      });
+    </script>
+  </div>
+</body>
+</html>

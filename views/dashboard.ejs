@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <img src="/images/login.png" alt="login" class="home-img" />
+    <div class="container box-around">
+      <h1>Dashboard</h1>
+
+      <div class="budget-summary">
+        <button class="summary-btn" onclick="toggleDetails('budget-details')">
+          Budget Summary
+        </button>
+        <div class="details-container budget-details">
+          <div class="summary-item">
+            <p>Income: $<span id="incomeValue"><%= income %></span></p>
+          </div>
+          <div class="summary-item">
+            <p>Savings: $<span id="savingsValue"><%= savings %></span></p>
+          </div>
+          <div class="summary-item">
+            <p>Expenses: $<span id="expensesValue"><%= expenses %></span></p>
+          </div>
+          <div class="summary-item">
+            <p>
+              Net Balance: $<span id="netBalanceValue"><%= netBalance %></span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="visual-narratives">
+        <button class="summary-btn" onclick="toggleDetails('visual-details')">
+          Visual Narratives
+        </button>
+        <div class="details-container visual-details">
+          <canvas id="incomeVsSavingsChart"></canvas>
+          <canvas id="expensesVsSavingsChart"></canvas>
+          <canvas id="incomeVsNetBalanceChart"></canvas>
+        </div>
+      </div>
+
+      <div class="recent-transactions">
+        <button
+          class="summary-btn"
+          onclick="toggleDetails('transactions-details')"
+        >
+          Recent Transactions
+        </button>
+        <div class="details-container transactions-details">
+          <ul>
+            <% recentTransactions.forEach(transaction => { %>
+            <li>
+              Date: <%= transaction.date %>, Category: <%= transaction.category
+              %>, Amount: $<%= transaction.amount %>, Description: <%=
+              transaction.description %>
+            </li>
+            <% }); %>
+          </ul>
+        </div>
+      </div>
+
+      <div class="expense-tracking">
+        <button class="summary-btn" onclick="navigateTo('/expense-tracking')">
+          Expense Tracking
+        </button>
+      </div>
+
+      <div class="real-time-alert">
+        <button class="alert-btn" onclick="navigateTo('/spending-alert')">
+          Real-Time Spending Alert
+        </button>
+      </div>
+
+      <form action="/logout" method="get">
+        <button type="submit" class="summary-btn">Logout</button>
+      </form>
+
+      <script>
+        const incomeValue = <%= income %>;
+        const expensesValue = <%= expenses %>;
+        const savingsValue = <%= savings %>;
+        const netBalanceValue = <%= netBalance %>;
+
+        document.getElementById('incomeValue').innerText = incomeValue;
+        document.getElementById('savingsValue').innerText = savingsValue;
+        document.getElementById('expensesValue').innerText = expensesValue;
+        document.getElementById('netBalanceValue').innerText = netBalanceValue;
+
+        function toggleDetails(detailsContainerClass) {
+          const detailsContainers = document.querySelectorAll('.details-container');
+          detailsContainers.forEach(container => {
+            container.style.display = 'none';
+          });
+
+          const selectedContainer = document.querySelector(`.${detailsContainerClass}`);
+          selectedContainer.style.display = 'block';
+          drawCharts();
+        }
+
+        function drawCharts() {
+          const incomeVsSavingsData = {
+            labels: ['Income', 'Savings'],
+            datasets: [{
+              data: [incomeValue, savingsValue],
+              backgroundColor: ['#36A2EB', '#FFCE56'],
+            }],
+          };
+
+          const expensesVsSavingsData = {
+            labels: ['Expenses', 'Savings'],
+            datasets: [{
+              data: [expensesValue, savingsValue],
+              backgroundColor: ['#FF6384', '#FFCE56'],
+            }],
+          };
+
+          const incomeVsNetBalanceData = {
+            labels: ['Income', 'Net Balance'],
+            datasets: [{
+              data: [incomeValue, netBalanceValue],
+              backgroundColor: ['#36A2EB', '#4CAF50'],
+            }],
+          };
+
+          const incomeVsSavingsChart = new Chart(document.getElementById('incomeVsSavingsChart'), {
+            type: 'pie',
+            data: incomeVsSavingsData,
+          });
+
+          const expensesVsSavingsChart = new Chart(document.getElementById('expensesVsSavingsChart'), {
+            type: 'pie',
+            data: expensesVsSavingsData,
+          });
+
+          const incomeVsNetBalanceChart = new Chart(document.getElementById('incomeVsNetBalanceChart'), {
+            type: 'pie',
+            data: incomeVsNetBalanceData,
+          });
+        }
+
+        function navigateTo(url) {
+          window.location.href = url;
+        }
+      </script>
+    </div>
+  </body>
+</html>
